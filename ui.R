@@ -2,9 +2,9 @@ library(shiny)
 
 shinyUI(fluidPage(
   navbarPage("Education",
-             #tabPanel("Data Intro", 
-                      # Add text about data
-             #),
+             tabPanel("Data Intro", 
+                       #Add text about data
+             ),
              tabPanel("Map",
                       sidebarLayout(
                         sidebarPanel(
@@ -16,10 +16,10 @@ shinyUI(fluidPage(
                           plotOutput("usaMap")
                         )
                       )
-             )#,
-             #tabPanel("Race and Gender",
-             #)#,
-             #tabPanel("About us",
-             #)
-             )#,
+             ),
+             tabPanel("Race and Gender",
+             ),
+             tabPanel("About us",
+             )
+             ),
 ))
