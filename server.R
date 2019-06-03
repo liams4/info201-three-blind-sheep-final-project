@@ -22,5 +22,5 @@ spending_data_2011 <- spending_data %>% filter(YEAR == 2011)
 spending_data_2015 <- spending_data %>% filter(YEAR == 2015)
 
 shinyServer(function(input, output) {
- 
+  
 })

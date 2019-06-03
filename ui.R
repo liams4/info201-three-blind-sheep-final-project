@@ -2,14 +2,16 @@ library(shiny)
 
 shinyUI(fluidPage(
   navbarPage("Education!",
-             tabPanel("Data Intro", 
+             tabPanel("Data Intro" 
                       # Add text about data
              ),
-             tabPanel("Map",
+             tabPanel("Map"
              ),
-             tabPanel("Race and Gender",
+             tabPanel("Race"
              ),
-             tabPanel("About us",
+             tabPanel("Spending Over Time"
+             ),
+             tabPanel("About us"
              )
-             ),
-))
+             ))
+)
