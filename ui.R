@@ -2,7 +2,7 @@ library(shiny)
 
 shinyUI(fluidPage(
   navbarPage("Education",
-             tabPanel("Data Intro", 
+             tabPanel("Data Intro" 
                        #Add text about data
              ),
              tabPanel("Map",
@@ -19,7 +19,22 @@ shinyUI(fluidPage(
              ),
              tabPanel("Race"
              ),
-             tabPanel("Spending Over Time"
+             tabPanel("Spending And Test Scores Over Time", 
+                      sidebarLayout(
+                        sidebarPanel(
+                          radioButtons("year", label="Year",
+                                       choices=c(2005, 2011, 2015),
+                                       selected = 2005),
+                          radioButtons("score_type", label="Score Type",
+                                       choices=c("Reading", "Math"),
+                                       selected="Reading")
+                        ),
+                        mainPanel(
+                          plotOutput("spending_and_scores_over_time_plot"),
+                          textOutput("spending_and_scores_over_time_text")
+                        )
+                      )
+                      
              ),
              tabPanel("About us"
              )
