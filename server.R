@@ -69,5 +69,4 @@ shinyServer(function(input, output) {
   output$spending_and_scores_over_time_text <- renderText({
     "This plot clearly shows/does not show that .."
   })
-  
 })
