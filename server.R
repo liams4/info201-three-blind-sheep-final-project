@@ -3,6 +3,7 @@ library(dplyr)
 library(ggplot2)
 
 data <- read.csv("data/states_all_extended.csv")
+total_revenue_by_state <- read.csv("data/total_revenue.csv")
 
 # Filter relevant columns and states
 spending_data <- data %>% select(STATE, YEAR, TOTAL_REVENUE, FEDERAL_REVENUE, 
@@ -61,12 +62,12 @@ shinyServer(function(input, output) {
     }
     
     ggplot() + 
-      geom_point(aes(x=expenditure, y=scores)) +
+      geom_point(aes(x=expenditure, y=scores), colour='blue') +
       labs(x = x_label, y = y_label)
   })
   
   # Prints a summary text about the "spending_and_scores_over_time_plot" plot
   output$spending_and_scores_over_time_text <- renderText({
-    "This plot clearly shows/does not show that .."
+    "This plot clearly shows/does not show that .. also the total U.S revenue went up every time period"
   })
 })
