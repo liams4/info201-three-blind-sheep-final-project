@@ -1,8 +1,8 @@
 library(shiny)
-library(dplyr)
 library(ggplot2)
 library(stringr)
 library(tidyr)
+library(dplyr)
 
 data <- read.csv("data/states_all_extended.csv")
 total_revenue_by_state <- read.csv("data/total_revenue_by_state.csv")
