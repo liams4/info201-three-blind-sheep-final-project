@@ -33,13 +33,13 @@ race_data <- data %>%
   filter(YEAR == "2015") %>% 
   filter(STATE != "AMERICAN_SAMOA", STATE != "BUREAU_OF_INDIAN_EDUCATION", STATE != "DEPARTMENT_OF_DEFENSE_EDUCATION_ACTIVITY",
          STATE != "GUAM", STATE != "PUERTO_RICO", STATE != "U.S._VIRGIN_ISLANDS") %>% 
-  mutate(GRADES_ALL_AS = ifelse(!is.na(GRADES_ALL_AS), GRADES_ALL_AS, "-")) %>% 
-  mutate(GRADES_ALL_AM = ifelse(!is.na(GRADES_ALL_AM), GRADES_ALL_AM, "-")) %>% 
-  mutate(GRADES_ALL_HI = ifelse(!is.na(GRADES_ALL_HI), GRADES_ALL_HI, "-")) %>% 
-  mutate(GRADES_ALL_BL = ifelse(!is.na(GRADES_ALL_BL), GRADES_ALL_BL, "-")) %>% 
-  mutate(GRADES_ALL_WH = ifelse(!is.na(GRADES_ALL_WH), GRADES_ALL_WH, "-")) %>% 
-  mutate(GRADES_ALL_HP = ifelse(!is.na(GRADES_ALL_HP), GRADES_ALL_HP, "-")) %>% 
-  mutate(GRADES_ALL_TR = ifelse(!is.na(GRADES_ALL_TR), GRADES_ALL_TR, "-")) %>% 
+  mutate(GRADES_ALL_AS = ifelse(!is.na(GRADES_ALL_AS), GRADES_ALL_AS, '0')) %>% 
+  mutate(GRADES_ALL_AM = ifelse(!is.na(GRADES_ALL_AM), GRADES_ALL_AM, '0')) %>% 
+  mutate(GRADES_ALL_HI = ifelse(!is.na(GRADES_ALL_HI), GRADES_ALL_HI, '0')) %>% 
+  mutate(GRADES_ALL_BL = ifelse(!is.na(GRADES_ALL_BL), GRADES_ALL_BL, '0')) %>% 
+  mutate(GRADES_ALL_WH = ifelse(!is.na(GRADES_ALL_WH), GRADES_ALL_WH, '0')) %>% 
+  mutate(GRADES_ALL_HP = ifelse(!is.na(GRADES_ALL_HP), GRADES_ALL_HP, '0')) %>% 
+  mutate(GRADES_ALL_TR = ifelse(!is.na(GRADES_ALL_TR), GRADES_ALL_TR, '0')) %>% 
   rename(Asian = "GRADES_ALL_AS", American_Indian_or_Alaska_Native = "GRADES_ALL_AM", Hispanic_or_Latino = "GRADES_ALL_HI", 
          Black = "GRADES_ALL_BL", White = "GRADES_ALL_WH", Hawaiian_Native_or_Pacific_Islander = "GRADES_ALL_HP",
          Two_or_More_Races = "GRADES_ALL_TR", State = "STATE", Total_Enrollment = "ENROLL") %>% 
@@ -93,13 +93,18 @@ shinyServer(function(input, output) {
     mutate(State = tolower(State)) %>% 
     mutate(State = str_replace_all(State, " ", "_"))
   
+  
   race_data_tidied <- race_data %>% 
     gather(key = state,
            value = enrollment,
            -State, -Total_Enrollment) %>% 
     mutate(State = tolower(State)) %>% 
-    full_join(state, by = "State")
+    mutate(enrolled = as.numeric(enrollment)/Total_Enrollment)
+    
+  #race_data_tidied Mfull_join(state, by = "State")
   
+  print(head(race_data_tidied))
+  print(head(race_data))
   # Creates a scatter plot of states' spending data in the year specified by
   # the user versus the states' 8th grade scores in the test type specified 
   # by the user
@@ -135,11 +140,11 @@ shinyServer(function(input, output) {
       
   output$race_plot <- renderPlot({
     race_plot <- ggplot(race_data_tidied) +
-      geom_col(aes(x= Abbreviation, y = enrollment, fill = state)) +
+      geom_col(aes(x= State, y = enrolled, fill = state)) +
       labs(title = "State Vs. Race Demographics of Students Enrolled",
            x = "State", 
            y = "Enrollment by Race",
-           fill = "Race/Ethnicity") +
+           fill = "Race/Ethnicity", las = 2) +
       theme(axis.text.y=element_blank(),
             axis.ticks.y=element_blank())
     race_plot
