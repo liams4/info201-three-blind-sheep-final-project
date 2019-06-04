@@ -3,7 +3,7 @@ library(dplyr)
 library(ggplot2)
 
 data <- read.csv("data/states_all_extended.csv")
-total_revenue_by_state <- read.csv("data/total_revenue.csv")
+total_revenue_by_state <- read.csv("data/total_revenue_by_state.csv")
 
 # Filter relevant columns and states
 spending_data <- data %>% select(STATE, YEAR, TOTAL_REVENUE, FEDERAL_REVENUE, 
@@ -35,7 +35,8 @@ shinyServer(function(input, output) {
     geom_polygon(data=usa, aes(x=long, y=lat, group=group), fill=filtered_2015[input$variable])
   })
   
-  # Gets all of spending the data specific to the year passed as a parameter
+  # Gets all of education spending the data specific to the year passed as a 
+  # parameter
   get_year_spending_data <- function(year) {
     spending_data <- spending_data_2005
     if (year == 2011) {
@@ -46,6 +47,18 @@ shinyServer(function(input, output) {
     spending_data
   }
   
+  # Gets all of the revenue data for the specific year passed as a parameter
+  get_revenue_data <- function(year) {
+    revenue_data <- total_revenue_by_state$REVENUE_2005
+    if (year == 2011) {
+      revenue_data <- total_revenue_by_state$REVENUE_2011
+    } else if (year == 2015) {
+      revenue_data <- total_revenue_by_state$REVENUE_2015
+    } 
+    revenue_data
+  }
+  
+  
   # Creates a scatter plot of states' spending data in the year specified by
   # the user versus the states' 8th grade scores in the test type specified 
   # by the user
@@ -53,16 +66,20 @@ shinyServer(function(input, output) {
     
     x_label <- paste('State Expenditure', input$year)
     y_label <- paste0('State Grade 8 ', input$score_type, ' Score ', input$year)
-    year <- get_year_spending_data(input$year)
     
-    expenditure <- year$TOTAL_EXPENDITURE
-    scores <- year$AVG_READING_8_SCORE
+    
+    year_spending_data <- get_year_spending_data(input$year)
+    education_expenditure <- year_spending_data$TOTAL_EXPENDITURE
+    revenue <- get_revenue_data(input$year)
+    percent_revenue_spent_on_education <- education_expenditure / revenue
+    
+    scores <- year_spending_data$AVG_READING_8_SCORE
     if (input$score_type == 'Math') {
-      scores <- year$AVG_MATH_8_SCORE
+      scores <- year_spending_data$AVG_MATH_8_SCORE
     }
     
     ggplot() + 
-      geom_point(aes(x=expenditure, y=scores), colour='blue') +
+      geom_point(aes(x=percent_revenue_spent_on_education, y=scores), colour='blue') +
       labs(x = x_label, y = y_label)
   })
   
