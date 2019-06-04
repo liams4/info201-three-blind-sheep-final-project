@@ -1,6 +1,7 @@
 library(shiny)
 library(dplyr)
 library(ggplot2)
+library(stringr)
 
 data <- read.csv("data/states_all_extended.csv")
 
@@ -26,12 +27,19 @@ spending_data_2015 <- spending_data %>% filter(YEAR == 2015)
 
 shinyServer(function(input, output) {
   output$usaMap <- renderPlot({
-    states <- map_data("state")
-    filtered_2015 <- data %>%
+    type = input$variable
+    states <- map_data("state") %>%
+      mutate(region = str_replace_all(region, " ", "_"))
+    filtered_2015 <- spending_data_2015 %>%
       filter(YEAR == 2015) %>%
-      select(input$variable)
+      mutate(STATE = tolower(STATE)) %>%
+      full_join(states, by=c("STATE" = "region")) %>%
+      select(type, long, lat) %>%
+      filter(!(is.na(long)))
     ggplot() +
-    geom_polygon(data=usa, aes(x=long, y=lat, group=group), fill=filtered_2015[input$variable])
+      geom_polygon(data=states, aes(x=long, y=lat, group=group, fill=filtered_2015[[type]])) +
+      labs(fill=type) +
+      coord_fixed(1.3)
   })
   
   # Gets all of spending the data specific to the year passed as a parameter
