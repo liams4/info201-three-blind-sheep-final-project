@@ -41,6 +41,7 @@ shinyServer(function(input, output) {
       mutate(region = str_replace_all(region, " ", "_"))
     filtered_2015 <- spending_data_2015 %>%
       filter(YEAR == 2015) %>%
+      mutate(REVENUE_SPENT_ON_EDUCATION = ) %>%
       mutate(STATE = tolower(STATE)) %>%
       full_join(states, by=c("STATE" = "region")) %>%
       select(type, long, lat) %>%
@@ -92,7 +93,6 @@ shinyServer(function(input, output) {
             axis.ticks.y=element_blank())
     race_plot
   })
-
   
   output$race_data <- renderTable({
     race_data <- data %>% 
