@@ -1,5 +1,8 @@
 library(shiny)
 library(shinythemes)
+library(dplyr)
+library(tidyr)
+library(stringr)
 
 shinyUI(fluidPage(
   navbarPage(
@@ -48,8 +51,10 @@ shinyUI(fluidPage(
                           tabPanel("Table", tableOutput("race_data"))
              ), #create dashboard with tabs for bar graph and table
              h3("About the Data"),
-             p("This data table was created from the education megadata. This data table shows the total enrollment as well as
-               the enrollment of students of each race demographic for the year 2015 for each state."),
+             p("This data table was created from the U.S. Education Datasets: Unification Project by Roy Garrard.
+               This data table shows the total enrollment as well as the enrollment of students of each race demographic for the year 2015 for each state.
+               Unfortunately, there is no demographic enrollment data by race for the states Oregon and California.
+               This is why there is no columns for these two states."),
              h3("Analysis"),
              p(
                "This data shows the enrollment demographics of students of different races/ethnicities. This tab
@@ -58,8 +63,8 @@ shinyUI(fluidPage(
                by poor education funding. The correlation between funding and academic funding has already been established.
                "),
              p(
-               "The data contains data of race demogrpahics for enrollment only, not any data on academic performance. 
-               There for no direct correlation can be established between race/ethnicity demographics within a state, and the
+               "The data contains data of race demogrpahics for enrollment only, not any data on academic performance by race. 
+               Therefore no direct correlation can be established between race/ethnicity demographics within a state, and the
                state's education funding/academic performance relationship. However it can be observed that students of 
                marginalized races are greater impacted by the poor education funding/academic performance relationship. "
              )

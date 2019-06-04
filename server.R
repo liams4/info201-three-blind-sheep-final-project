@@ -5,7 +5,7 @@ library(tidyr)
 
 data <- read.csv("data/states_all_extended.csv")
 total_revenue_by_state <- read.csv("data/total_revenue_by_state.csv")
-@@ -86,18 +87,38 @@ shinyServer(function(input, output) {
+shinyServer(function(input, output) {
   # Prints a summary text about the "spending_and_scores_over_time_plot" plot
   output$spending_and_scores_over_time_text <- renderText({
     "This plot clearly shows/does not show that .. also the total U.S revenue went up every time period"
@@ -13,7 +13,6 @@ total_revenue_by_state <- read.csv("data/total_revenue_by_state.csv")
   })
   
   #Server stuff for race data
-  data <- read.csv("data/states_all_extended.csv")
   state <- read.csv("data/states.csv", sep=",") %>% 
     mutate(State = tolower(State)) %>% 
     mutate(State = str_replace_all(State, " ", "_"))
@@ -35,12 +34,13 @@ total_revenue_by_state <- read.csv("data/total_revenue_by_state.csv")
            Two_or_More_Races = "GRADES_ALL_TR", State = "STATE", Total_Enrollment = "ENROLL") %>% 
     select(-YEAR)
   
-  race_data_tidied <- race_data %>% 
+race_data_tidied <- race_data %>% 
     gather(key = state,
            value = enrollment,
            -State, -Total_Enrollment) %>% 
     mutate(State = tolower(State)) %>% 
-    full_join(state, by = "State")
+    full_join(state, by = "State") %>% 
+    mutate_all(enrolled = enrollment /Total_Enrollment)
   
   output$race_plot <- renderPlot({
     race_plot <- ggplot(race_data_tidied) +
@@ -49,8 +49,10 @@ total_revenue_by_state <- read.csv("data/total_revenue_by_state.csv")
            x = "State", 
            y = "Enrollment by Race",
            fill = "Race/Ethnicity") +
-      theme(axis.text.y=element_blank(),
-            axis.ticks.y=element_blank())
+      theme(
+        axis.title.x = element_text(size = 14, face = "plain"),
+        axis.title.y = element_text(size = 14, face = "plain")
+      ) 
     race_plot
   })
   
@@ -76,4 +78,3 @@ total_revenue_by_state <- read.csv("data/total_revenue_by_state.csv")
   })  
   
 })
-}) 
