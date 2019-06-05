@@ -1,13 +1,10 @@
 library(shiny)
 library(shinythemes)
-library(dplyr)
-library(tidyr)
-library(stringr)
 
 shinyUI(fluidPage(
   navbarPage(
     theme = shinytheme("flatly"),
-    "Education!",
+    "Homepage",
     tabPanel("Data Intro", 
              h1("U.S. Education Funding and Impact on Academic Performance", align="center"),
              img(src="classroom.jpg", align = "center"),
@@ -35,7 +32,7 @@ shinyUI(fluidPage(
     tabPanel("Map",
              sidebarLayout(
                 sidebarPanel(radioButtons("variable", label=h3("Visualization Variable"),
-                                          choices=c("Funding" = "TOTAL_REVENUE", 
+                                          choices=c("Funding" = "TOTAL_REVENUE", "Percent Spent on Education" = "Percent_Used_On_Education",
                                                     "4th Grade Math Scores" = "AVG_MATH_4_SCORE", "4th Grade Reading Scores" = "AVG_READING_4_SCORE",
                                                     "8th Grade Math Scores" = "AVG_MATH_8_SCORE", "8th Grade Reading Scores" = "AVG_READING_8_SCORE"),
                                           selected="TOTAL_REVENUE")),
@@ -52,23 +49,23 @@ shinyUI(fluidPage(
              
              
              h3("About the Data"),
-             p("This data table was created from the U.S. Education Datasets: Unification Project by Roy Garrard.
+             p("This data table showing student enrollment by race for each state in 2015 was created from the
+              'U.S. Education Datasets: Unification Project' by Roy Garrard.
                This data table shows the total enrollment as well as the enrollment of students of each race demographic for the year 2015 for each state.
                Unfortunately, there is no demographic enrollment data by race for the states Oregon and California.
-               This is why there is no columns for these two states."),
-             p("This data table was created from the education megadata. This data table shows the total enrollment as well as
-               the enrollment of students of each race demographic for the year 2015 for each state."),
-
+               This is why there are no columns for these two states."),
+             p("The data contains data of race demogrpahics for enrollment only, not any data on academic performance. 
+               Therefore, no direct correlation can be established between race/ethnicity demographics within a state, and the
+               state's education funding/academic performance relationship."),
              h3("Analysis"),
              p("This data shows the enrollment demographics of students of different races/ethnicities. This tab
                explores if there is a correlation in the race/ethnicity demographics within a state, and the state's
-               education funding and academic performace to see if students of marginalized races are greater impacted
-               by poor education funding. The correlation between funding and academic funding has already been established."),
-             p("The data contains data of race demogrpahics for enrollment only, not any data on academic performance. 
-                There for no direct correlation can be established between race/ethnicity demographics within a state, and the
-                state's education funding/academic performance relationship. However it can be observed that students of 
-                marginalized races are greater impacted by the poor education funding/academic performance relationship. "
-              )),
+               education funding and academic performace (seen on the map and spending tabs) to see if students of marginalized races
+               are greater impacted by poor education funding. The correlation between funding and academic funding every year was 
+               not established. It is not a nationwide trend that students of marginalized races are greater impacted by the poor 
+               education funding/academic performance relationship. Though some states which have low education funding and academic 
+               performace also have larger populations of minorities, for instance Lousiana, in these cases a relationsip is
+               observable"),
 
     tabPanel("Spending And Test Scores Over Time", 
              sidebarLayout(
