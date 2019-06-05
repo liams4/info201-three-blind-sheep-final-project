@@ -119,15 +119,6 @@ shinyServer(function(input, output) {
       labs(x = x_label, y = y_label)
   })
   
-  # Prints a summary text about the "spending_and_scores_over_time_plot" plot
-  output$spending_and_scores_over_time_text <- renderText({
-    "From this plot we can clearly see the positive correlation with spending 
-    and math scores for both grades 4 and 8. There is not an obvious linear 
-    correlation between spending and reading scores, but a small correlation
-    does exist. Over the years, we can also see than an increase in spending
-    led to an higher test score..."
-  })
-      
   output$race_plot <- renderPlot({
     race_plot <- ggplot(race_data_tidied) +
       geom_col(aes(x= State, y = enrolled, fill = state)) +
@@ -135,8 +126,6 @@ shinyServer(function(input, output) {
            x = "State", 
            y = "Enrollment by Race (%)",
            fill = "Race/Ethnicity") +
-      #theme(axis.text.y=element_blank(),
-      #      axis.ticks.y=element_blank())
       theme(axis.text.x = element_text(angle = 90, hjust = 1))
     race_plot
   })
