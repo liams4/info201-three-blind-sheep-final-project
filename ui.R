@@ -113,7 +113,7 @@ shinyUI(fluidPage(
                     The fact that reading scores are not correlated with education 
                     spending while math scores are could be due to an unknown 
                     variable like a different method of teaching for 
-                    reading-related coursework that is not affected by funding."
+                    reading-related coursework that is not affected by funding.")
                )
 
                
