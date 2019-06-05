@@ -7,7 +7,7 @@ shinyUI(fluidPage(
     "Homepage",
     tabPanel("Data Intro", 
              h1("U.S. Education Funding and Impact on Academic Performance", align="center"),
-             img(src="classroom.jpg", align = "center"),
+             HTML('<center><img src="classroom.jpg" height="300"></center>'),
              h2("Introduction"),
              p("Does more educational funding lead to better academic performance? Most people believe that better-funded 
                schools help student perform better because students have access to state-of-the-arts facilities, qualified teachers,
@@ -65,7 +65,8 @@ shinyUI(fluidPage(
                not established. It is not a nationwide trend that students of marginalized races are greater impacted by the poor 
                education funding/academic performance relationship. Though some states which have low education funding and academic 
                performace also have larger populations of minorities, for instance Lousiana, in these cases a relationsip is
-               observable")),
+               observable")
+    ),
 
     tabPanel("Spending And Test Scores Over Time", 
              sidebarLayout(
@@ -78,6 +79,7 @@ shinyUI(fluidPage(
                               selected="Reading")),
                mainPanel(
                  plotOutput("spending_and_scores_over_time_plot"),
+
                  h3("About the Data"),
                  p("This plot showing education funding and student test scores
                     in reading and math for grades 4 and 8 in each state was 
@@ -113,6 +115,7 @@ shinyUI(fluidPage(
                     variable like a different method of teaching for 
                     reading-related coursework that is not affected by funding."
                )
+
                
           
              )),
@@ -120,13 +123,17 @@ shinyUI(fluidPage(
     tabPanel("About us",
              h1("About Us", align="center"),
              h2("Anusha"),
+             HTML('<center><img src="Anusha.jpg" height="300"></center>'),
              p("Major: Law Societies and Justice; Minor: Informatics"),
              h2("Brad"),
+             HTML('<center><img src="Brad.jpg" height="300"></center>'),
              p("Major: Applied Computational Mathematical Sciences & Informatics"),
              h2("Liam"),
+             HTML('<center><img src="Liam.jpg" height="300"></center>'),
              p("Major: Informatics"),
              h2("Anh"),
+             HTML('<center><img src="Anh.jpg" height="300"></center>'),
              p("Major: English; Minor: Informatics")
-            )
+          )
     )
   ))

@@ -52,8 +52,7 @@ race_data <- data %>%
 
 
 shinyServer(function(input, output) {
-
-#Render Maps
+  #Render Maps
   output$usaMap <- renderPlot({
     type = input$variable
     revenue_data <- get_revenue_data(2015)
