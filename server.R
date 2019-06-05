@@ -51,15 +51,20 @@ shinyServer(function(input, output) {
   
   output$usaMap <- renderPlot({
     type = input$variable
+    revenue_data <- get_revenue_data(2015)
     states <- map_data("state") %>%
       mutate(region = str_replace_all(region, " ", "_"))
-    filtered_2015 <- spending_data_2015 %>%
+    
+    extended_spending <- spending_data_2015 %>%
+      mutate(Percent_Used_On_Education = (TOTAL_REVENUE / revenue_data) * 100)
+    
+    filtered_2015 <- extended_spending %>%
       filter(YEAR == 2015) %>%
-      mutate(REVENUE_SPENT_ON_EDUCATION = ) %>%
       mutate(STATE = tolower(STATE)) %>%
       full_join(states, by=c("STATE" = "region")) %>%
       select(type, long, lat) %>%
       filter(!(is.na(long)))
+    
     ggplot() +
       geom_polygon(data=states, aes(x=long, y=lat, group=group, fill=filtered_2015[[type]])) +
       labs(fill=type) +
@@ -69,24 +74,14 @@ shinyServer(function(input, output) {
   # Gets all of education spending the data specific to the year passed as a 
   # parameter
   get_year_spending_data <- function(year) {
-    spending_data <- spending_data_2005
-    if (year == 2011) {
-      spending_data <- spending_data_2011
-    } else if (year == 2015) {
-      spending_data <- spending_data_2015
-    } 
-    spending_data
+    data_name <- paste0("spending_data_", year)
+    get(data_name)
   }
   
   # Gets all of the revenue data for the specific year passed as a parameter
   get_revenue_data <- function(year) {
-    revenue_data <- total_revenue_by_state$REVENUE_2005
-    if (year == 2011) {
-      revenue_data <- total_revenue_by_state$REVENUE_2011
-    } else if (year == 2015) {
-      revenue_data <- total_revenue_by_state$REVENUE_2015
-    } 
-    revenue_data
+    col_name <- paste0("REVENUE_", year)
+    total_revenue_by_state[[col_name]]
   }
   
   #Server stuff for race data
