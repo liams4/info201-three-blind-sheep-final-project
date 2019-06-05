@@ -72,8 +72,17 @@ shinyUI(fluidPage(
                               selected="Reading")),
                mainPanel(
                  plotOutput("spending_and_scores_over_time_plot"),
-                 textOutput("spending_and_scores_over_time_text")
-               )
+                 h3("heading"),
+                 p(
+                   "From this plot we can clearly see the positive correlation with spending 
+                   and math scores for both grades 4 and 8. There is not an obvious linear 
+                   correlation between spending and reading scores, but a small correlation
+                   does exist. Over the years, we can also see than an increase in spending
+                   led to an higher test score..."
+                 )
+               ),
+               
+               
              )),
     
     tabPanel("About us",
