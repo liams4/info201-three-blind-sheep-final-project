@@ -4,7 +4,7 @@ library(shinythemes)
 shinyUI(fluidPage(
   navbarPage(
     theme = shinytheme("flatly"),
-    "Homepage",
+    "",
     tabPanel("Data Intro", 
              h1("U.S. Education Funding and Impact on Academic Performance", align="center"),
              HTML('<center><img src="classroom.jpg" height="300"></center>'),
@@ -37,7 +37,19 @@ shinyUI(fluidPage(
                                                     "8th Grade Math Scores" = "AVG_MATH_8_SCORE", "8th Grade Reading Scores" = "AVG_READING_8_SCORE"),
                                           selected="TOTAL_REVENUE")),
                 mainPanel(
-                  plotOutput("usaMap")
+                  plotOutput("usaMap"),
+                  h3("About the Data"),
+                  p("This is a map of the U.S. depicting different 2015 data based on which information the user chooses.
+                    They can choose from depicting the amount of money spent on education as well as what percent that
+                    is from the total revenue earned by the state. It can also show the average reading or math scores of
+                    4th and 8th graders. To produce this data we used the data set on state revenue and test scores. We 
+                    used dplyr's built in state map data to produce a map and provide each state with latitude and longitudes."),
+                  h3("Analysis"),
+                  p("Looking at the data in general, there is not a huge amount of correlation between the amount of money spent
+                    with how well the students do on their tests. Looking at California and Illinois in particular, (two of the states
+                    with the biggest education budgets) there seems to be a negative correlation between the amount of money spent
+                    and the scores of students. However, this could be because of many unknown factors such as what the money is being
+                    spent on or how seriously students take the test.")
                 ))),
     
     tabPanel("Race",

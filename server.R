@@ -71,7 +71,11 @@ shinyServer(function(input, output) {
     
     ggplot() +
       geom_polygon(data=states, aes(x=long, y=lat, group=group, fill=filtered_2015[[type]])) +
-      labs(fill=type) +
+      labs(fill=type, x="", y="") +
+      theme(axis.text.y=element_blank(),
+            axis.ticks.y=element_blank(),
+            axis.text.x=element_blank(),
+            axis.ticks.x=element_blank()) +
       coord_fixed(1.3)
   })
 
