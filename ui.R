@@ -65,7 +65,7 @@ shinyUI(fluidPage(
                not established. It is not a nationwide trend that students of marginalized races are greater impacted by the poor 
                education funding/academic performance relationship. Though some states which have low education funding and academic 
                performace also have larger populations of minorities, for instance Lousiana, in these cases a relationsip is
-               observable"),
+               observable")),
 
     tabPanel("Spending And Test Scores Over Time", 
              sidebarLayout(
@@ -78,17 +78,43 @@ shinyUI(fluidPage(
                               selected="Reading")),
                mainPanel(
                  plotOutput("spending_and_scores_over_time_plot"),
-                 h3("heading"),
-                 p(
-                   "From this plot we can clearly see the positive correlation with spending 
-                   and math scores for both grades 4 and 8. There is not an obvious linear 
-                   correlation between spending and reading scores, but a small correlation
-                   does exist. Over the years, we can also see than an increase in spending
-                   led to an higher test score..."
-                 )
-               ),
+                 h3("About the Data"),
+                 p("This plot showing education funding and student test scores
+                    in reading and math for grades 4 and 8 in each state was 
+                    created from the 'U.S. Education Datasets: Unification Project'
+                    by Roy Garrard and the 'Annual Survey of State and Local 
+                    Government Finances' published by the United States Census 
+                    Bureau. The plot shows the percentage of each state's 
+                    spending spent on education and the state's corresponding test
+                    scores. The widget to the left of the plot can can be altered 
+                    so that the scores and funding for 2005, 2011, and 2015 can be 
+                    seen."
+                 ),
+                 h3("Analysis"),
+                 p("For math scores, we can see that there was a positive 
+                   correlation with spending on education in each of the three
+                   years. For reading scores, we can see some slight correlation
+                   in each of the three years, but there is no major correlation."),
+                 p("We can also see that the states as a whole increased the 
+                   percentage of their budgets spent on education by a small amount 
+                   each year. Interestingly, even though math scores had a positive 
+                   correlation with education spending in each individual year, 
+                   both math and reading scores seemed to decrease on a national 
+                   between 2005 and 2011 as well as 2011 and 2015. This could be
+                   from an unknown variable like changing methods of education or
+                   more difficult tests."),
+                 p("Overall, while math scores are consistently correlated with
+                    federal spending in different years, the fact that reading 
+                    scores are not correlated in the different years does not 
+                    allow us to make the conclusion that education spending should
+                    be increased in order to better prepare students academically.
+                    The fact that reading scores are not correlated with education 
+                    spending while math scores are could be due to an unknown 
+                    variable like a different method of teaching for 
+                    reading-related coursework that is not affected by funding."
+               )
                
-               
+          
              )),
     
     tabPanel("About us",
