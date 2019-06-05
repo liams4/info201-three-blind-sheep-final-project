@@ -10,28 +10,28 @@ This project sources most of its data from "U.S. Education Datasets: Unification
 Note: These are only the columns which we filtered through and kept for this project from the extended data set. 
 
 Identification
-*PRIMARY_KEY: A combination of the year and state name.
-*YEAR
-*STATE
+* PRIMARY_KEY: A combination of the year and state name.
+* YEAR
+* STATE
 
 Enrollment by Race/Ethnicity
-*Total_Enrollment: Total number of students enrolled
-*Grades_ALL_AS: Number of students enrolled whose race/ethnicity is identified as 'Asian'
-*Grades_ALL_AM: Number of students enrolled whose race/ethnicity is identified as 'American Indian or Alaska Native'
-*Grades_ALL_HI: Number of students enrolled whose race/ethnicity is identified as 'Hispanic/Latino'
-*Grades_ALL_BL: Number of students enrolled whose race/ethnicity is identified as 'Black/African American'
-*Grades_ALL_WH: Number of students enrolled whose race/ethnicity is identified as 'White'
-*Grades_ALL_HP: Number of students enrolled whose race/ethnicity is identified as 'Hawaiian Native/Pacific Islander'
-*Grades_ALL_TR: Number of students enrolled whose race/ethnicity is identified as 'Two or more races'
+* Total_Enrollment: Total number of students enrolled
+* Grades_ALL_AS: Number of students enrolled whose race/ethnicity is identified as 'Asian'
+* Grades_ALL_AM: Number of students enrolled whose race/ethnicity is identified as 'American Indian or Alaska Native'
+* Grades_ALL_HI: Number of students enrolled whose race/ethnicity is identified as 'Hispanic/Latino'
+* Grades_ALL_BL: Number of students enrolled whose race/ethnicity is identified as 'Black/African American'
+* Grades_ALL_WH: Number of students enrolled whose race/ethnicity is identified as 'White'
+* Grades_ALL_HP: Number of students enrolled whose race/ethnicity is identified as 'Hawaiian Native/Pacific Islander'
+* Grades_ALL_TR: Number of students enrolled whose race/ethnicity is identified as 'Two or more races'
 
 Financial
 *TOTAL_EXPENDITURE: The total expenditure for the state.
 
 Academic Achievement
-*AVG_MATH_4_SCORE: The average score for fourth graders taking the NAEP math exam for a given state
-*AVG_MATH_8_SCORE: The average score for eight graders taking the NAEP math exam for a given state
-*AVG_READING_4_SCORE: The average score for fourth graders taking the NAEP reading exam for a given state
-*AVG_READING_8_SCORE: The average score for eighth graders taking the NAEP reading exam for a given state
+* AVG_MATH_4_SCORE: The average score for fourth graders taking the NAEP math exam for a given state
+* AVG_MATH_8_SCORE: The average score for eight graders taking the NAEP math exam for a given state
+* AVG_READING_4_SCORE: The average score for fourth graders taking the NAEP reading exam for a given state
+* AVG_READING_8_SCORE: The average score for eighth graders taking the NAEP reading exam for a given state
 
 ### Annual Survey of State and Local Government Finances- 2005, 2011, 2015
 We use three datasets from 2005, 2011, and 2015 sourced from survey data from the United States Census bureau. The survey 
