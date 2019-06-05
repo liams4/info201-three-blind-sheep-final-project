@@ -60,7 +60,7 @@ shinyServer(function(input, output) {
       mutate(region = str_replace_all(region, " ", "_"))
     
     extended_spending <- spending_data_2015 %>%
-      mutate(Percent_Used_On_Education = (TOTAL_REVENUE / revenue_data) * 100)
+      mutate(Percent_Used_On_Education = (TOTAL_EXPENDITURE / revenue_data) * 100)
     
     filtered_2015 <- extended_spending %>%
       filter(YEAR == 2015) %>%
@@ -71,7 +71,11 @@ shinyServer(function(input, output) {
     
     ggplot() +
       geom_polygon(data=states, aes(x=long, y=lat, group=group, fill=filtered_2015[[type]])) +
-      labs(fill=type) +
+      labs(fill=type, x="", y="") +
+      theme(axis.text.y=element_blank(),
+            axis.ticks.y=element_blank(),
+            axis.text.x=element_blank(),
+            axis.ticks.x=element_blank()) +
       coord_fixed(1.3)
   })
 
