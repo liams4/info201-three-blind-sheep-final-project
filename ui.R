@@ -32,7 +32,7 @@ shinyUI(fluidPage(
     tabPanel("Map",
              sidebarLayout(
                 sidebarPanel(radioButtons("variable", label=h3("Visualization Variable"),
-                                          choices=c("Funding" = "TOTAL_REVENUE", 
+                                          choices=c("Funding" = "TOTAL_REVENUE", "Percent Spent on Education" = "Percent_Used_On_Education",
                                                     "4th Grade Math Scores" = "AVG_MATH_4_SCORE", "4th Grade Reading Scores" = "AVG_READING_4_SCORE",
                                                     "8th Grade Math Scores" = "AVG_MATH_8_SCORE", "8th Grade Reading Scores" = "AVG_READING_8_SCORE"),
                                           selected="TOTAL_REVENUE")),
