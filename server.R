@@ -52,8 +52,7 @@ race_data <- data %>%
 
 
 shinyServer(function(input, output) {
-
-#Render Maps
+  #Render Maps
   output$usaMap <- renderPlot({
     type = input$variable
     revenue_data <- get_revenue_data(2015)
@@ -61,7 +60,7 @@ shinyServer(function(input, output) {
       mutate(region = str_replace_all(region, " ", "_"))
     
     extended_spending <- spending_data_2015 %>%
-      mutate(Percent_Used_On_Education = (TOTAL_REVENUE / revenue_data) * 100)
+      mutate(Percent_Used_On_Education = (TOTAL_EXPENDITURE / revenue_data) * 100)
     
     filtered_2015 <- extended_spending %>%
       filter(YEAR == 2015) %>%
@@ -72,7 +71,11 @@ shinyServer(function(input, output) {
     
     ggplot() +
       geom_polygon(data=states, aes(x=long, y=lat, group=group, fill=filtered_2015[[type]])) +
-      labs(fill=type) +
+      labs(fill=type, x="", y="") +
+      theme(axis.text.y=element_blank(),
+            axis.ticks.y=element_blank(),
+            axis.text.x=element_blank(),
+            axis.ticks.x=element_blank()) +
       coord_fixed(1.3)
   })
 
@@ -103,14 +106,14 @@ race_data_tidied <- race_data %>%
   # by the user
   output$spending_and_scores_over_time_plot <- renderPlot({
 
-    x_label <- paste('State Expenditure', input$year)
+    x_label <- paste('Percent of State Spending on Education', input$year)
     y_label <- paste0('State Grade 8 ', input$score_type, ' Score ', input$year)
 
 
     year_spending_data <- get_year_spending_data(input$year)
     education_expenditure <- year_spending_data$TOTAL_EXPENDITURE
     revenue <- get_revenue_data(input$year)
-    percent_revenue_spent_on_education <- education_expenditure / revenue
+    percent_revenue_spent_on_education <- education_expenditure / revenue * 100
 
     scores <- year_spending_data$AVG_READING_8_SCORE
     if (input$score_type == 'Math') {
@@ -122,15 +125,6 @@ race_data_tidied <- race_data %>%
       labs(x = x_label, y = y_label)
   })
 
-  # Prints a summary text about the "spending_and_scores_over_time_plot" plot
-  output$spending_and_scores_over_time_text <- renderText({
-    "From this plot we can clearly see the positive correlation with spending
-    and math scores for both grades 4 and 8. There is not an obvious linear
-    correlation between spending and reading scores, but a small correlation
-    does exist. Over the years, we can also see than an increase in spending
-    led to an higher test score..."
-  })
-
 #Renders bar graph showing student enrollment by race demographics for each state 
   output$race_plot <- renderPlot({
     race_plot <- ggplot(race_data_tidied) +
@@ -139,8 +133,6 @@ race_data_tidied <- race_data %>%
            x = "State",
            y = "Enrollment by Race (%)",
            fill = "Race/Ethnicity") +
-      #theme(axis.text.y=element_blank(),
-      #      axis.ticks.y=element_blank())
       theme(axis.text.x = element_text(angle = 90, hjust = 1))
     race_plot
   })
