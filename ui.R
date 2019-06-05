@@ -48,38 +48,28 @@ shinyUI(fluidPage(
                 greater impact students of marginalized races?"),
              tabsetPanel( type = "tabs",
                           tabPanel("Plot", plotOutput("race_plot")), 
-                          tabPanel("Table", tableOutput("race_data"))), #create dashboard with tabs for bar graph and table
+                          tabPanel("Table", tableOutput("race_data"))),
+             
+             
              h3("About the Data"),
-<<<<<<< HEAD
              p("This data table was created from the U.S. Education Datasets: Unification Project by Roy Garrard.
                This data table shows the total enrollment as well as the enrollment of students of each race demographic for the year 2015 for each state.
                Unfortunately, there is no demographic enrollment data by race for the states Oregon and California.
                This is why there is no columns for these two states."),
-=======
              p("This data table was created from the education megadata. This data table shows the total enrollment as well as
-                                         the enrollment of students of each race demographic for the year 2015 for each state."),
->>>>>>> d7be324f20eb3301d85cc07d0aaf4c9d2bd4e043
+               the enrollment of students of each race demographic for the year 2015 for each state."),
+
              h3("Analysis"),
              p("This data shows the enrollment demographics of students of different races/ethnicities. This tab
                explores if there is a correlation in the race/ethnicity demographics within a state, and the state's
                education funding and academic performace to see if students of marginalized races are greater impacted
                by poor education funding. The correlation between funding and academic funding has already been established."),
-             p(
-<<<<<<< HEAD
-               "The data contains data of race demogrpahics for enrollment only, not any data on academic performance by race. 
-               Therefore no direct correlation can be established between race/ethnicity demographics within a state, and the
-               state's education funding/academic performance relationship. However it can be observed that students of 
-               marginalized races are greater impacted by the poor education funding/academic performance relationship. "
-             )
-             ),
-=======
-                "The data contains data of race demogrpahics for enrollment only, not any data on academic performance. 
+             p("The data contains data of race demogrpahics for enrollment only, not any data on academic performance. 
                 There for no direct correlation can be established between race/ethnicity demographics within a state, and the
                 state's education funding/academic performance relationship. However it can be observed that students of 
                 marginalized races are greater impacted by the poor education funding/academic performance relationship. "
               )),
-    
->>>>>>> d7be324f20eb3301d85cc07d0aaf4c9d2bd4e043
+
     tabPanel("Spending And Test Scores Over Time", 
              sidebarLayout(
                sidebarPanel(
