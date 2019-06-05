@@ -106,14 +106,14 @@ race_data_tidied <- race_data %>%
   # by the user
   output$spending_and_scores_over_time_plot <- renderPlot({
 
-    x_label <- paste('State Expenditure', input$year)
+    x_label <- paste('Percent of State Spending on Education', input$year)
     y_label <- paste0('State Grade 8 ', input$score_type, ' Score ', input$year)
 
 
     year_spending_data <- get_year_spending_data(input$year)
     education_expenditure <- year_spending_data$TOTAL_EXPENDITURE
     revenue <- get_revenue_data(input$year)
-    percent_revenue_spent_on_education <- education_expenditure / revenue
+    percent_revenue_spent_on_education <- education_expenditure / revenue * 100
 
     scores <- year_spending_data$AVG_READING_8_SCORE
     if (input$score_type == 'Math') {
