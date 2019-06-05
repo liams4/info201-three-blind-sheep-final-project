@@ -60,7 +60,7 @@ shinyServer(function(input, output) {
       mutate(region = str_replace_all(region, " ", "_"))
     
     extended_spending <- spending_data_2015 %>%
-      mutate(Percent_Used_On_Education = (TOTAL_REVENUE / revenue_data) * 100)
+      mutate(Percent_Used_On_Education = (TOTAL_EXPENDITURE / revenue_data) * 100)
     
     filtered_2015 <- extended_spending %>%
       filter(YEAR == 2015) %>%
