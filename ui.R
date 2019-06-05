@@ -26,7 +26,9 @@ shinyUI(fluidPage(
              br(),
              a("Annual Survey of School System Finances", herf="https://www.census.gov/programs-surveys/school-finances/data/tables.html"),
              br(),
-             a("National Report Card", href="https://www.nationsreportcard.gov/data_tools.aspx")
+             a("National Report Card", href="https://www.nationsreportcard.gov/data_tools.aspx"),
+             br(),
+             a("Annual Survey of State and Local Government Finances", href="https://www.census.gov/programs-surveys/gov-finances/data/datasets.html")
     ),
     
     tabPanel("Map",
