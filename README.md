@@ -62,3 +62,8 @@ The spending tab contains an interactive feature which allows the user to look a
 ## Tab 5: About Us 
 This tab displays the full name, major, and an image of each group member who collaborated on creating this project. This tab is not
 related to the data or questions of the project, it is only informing about the creators of the project. 
+
+##Link to the App
+This app can be viewed here:
+[Our App](https://liams5.shinyapps.io/info201-three-blind-sheep-final-project/)
+
