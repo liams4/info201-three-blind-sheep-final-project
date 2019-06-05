@@ -3,6 +3,7 @@ library(ggplot2)
 library(stringr)
 library(tidyr)
 library(dplyr)
+library(maps)
 
 data <- read.csv("data/states_all_extended.csv")
 total_revenue_by_state <- read.csv("data/total_revenue_by_state.csv")
