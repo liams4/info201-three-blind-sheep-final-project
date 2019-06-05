@@ -9,16 +9,16 @@ shinyUI(fluidPage(
              h1("U.S. Education Funding and Impact on Academic Performance", align="center"),
              HTML('<center><img src="classroom.jpg" height="300"></center>'),
              h2("Introduction"),
-             p("Does more educational funding lead to better academic performance? Most people believe that better-funded 
+             p("Does more educational funding lead to better academic performance? Can a nationwide trend be established over time?
+               Are margnialized communities more impacted by poor education funding? Experts agree that better-funded 
                schools help student perform better because students have access to state-of-the-arts facilities, qualified teachers,
-               an easier transition to college and much more benefits to be named. Schools in the United States are
-               funded by federal, state, and local sources. Depending on where an individual lives, this can create large
-               disparities in funding between wealthy and impoverished communities."),
+               an easier transition to college and much more benefits to be named. However, policy makers deciding education fundng
+               have not caught up, this project is to establish data that proves better funding means better academic performance. 
+               Schools in the United States are funded by federal, state, and local sources. Depending on where an individual lives, 
+               this can create large disparities in funding between wealthy and impoverished communities."),
              h2("Background Information"),
-             p("Our group has chosen one dataset for this project - 'the U.S. Education Dataset: Unification Project.' 
-               This dataset contains information about K-12 education in the United States. It separates data by state, 
-               and includes information about states’ revenue, education spending, and student test scores, and also separates 
-               the data by ethnicity, gender, and grade level in each state."),
+             p("Our group used two datasets for this project. One was the'U.S. Education Dataset: Unification Project' and 
+               'Annual Survey of State and Local Government Finances'. Our audience is policy makers and education advocates."),
              h2("Source"),
              a("U.S. Education Dataset", href="https://www.kaggle.com/noriuk/us-education-datasets-unification-project#states_all_extended.csv"),
              br(),
